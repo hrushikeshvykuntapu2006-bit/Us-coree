@@ -1,0 +1,313 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>us coree </title><style>
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background: linear-gradient(135deg,#ffd6e0,#ffb3c6,#e0c3fc);
+  text-align:center;
+  color:#333;
+  overflow-x:hidden;
+}
+
+html{scroll-behavior:smooth;}
+
+/* 🎈 BALLONS */
+.balloons{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+  z-index:1;
+}
+.balloon{
+  position:absolute;
+  bottom:-120px;
+  width:35px;
+  height:45px;
+  border-radius:50%;
+  animation: floatUp 10s linear infinite;
+}
+@keyframes floatUp{
+  0%{transform:translateY(0);opacity:1;}
+  100%{transform:translateY(-110vh);opacity:0;}
+}
+
+/* 🌸 LOCKSCREEN */
+#lockScreen{
+  position:fixed;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background: linear-gradient(135deg,#ffd6e0,#e0c3fc,#c2f0ff);
+  z-index:9999;
+}
+
+.lockBox{
+  padding:35px;
+  border-radius:25px;
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(50px);
+  border:1px solid rgba(255,255,255,0.35);
+  text-align:center;
+}
+
+.lockBox input{
+  padding:10px;
+  width:200px;
+  border-radius:12px;
+  border:none;
+  text-align:center;
+}
+
+.lockBox button{
+  margin-top:12px;
+  padding:10px 20px;
+  border:none;
+  border-radius:12px;
+  background:#ff6b81;
+  color:white;
+}
+
+section{padding:35px 15px;}
+
+.gallery,.movies{
+  display:flex;
+  overflow-x:auto;
+  gap:15px;
+  padding:10px;
+}
+
+.gallery img,.movies img{
+  width:150px;
+  height:230px;
+  object-fit:cover;
+  border-radius:16px;
+}
+
+.card{
+  padding:18px;
+  border-radius:20px;
+  max-width:420px;
+  margin:auto;
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(30px);
+  border:1px solid rgba(255,255,255,0.3);
+}
+
+.musicGrid{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  align-items:center;
+}
+
+.musicCard{
+  width:92%;
+  max-width:420px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:10px;
+  border-radius:18px;
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(50px);
+  border:1px solid rgba(255,255,255,0.3);
+}
+
+.album{
+  width:65px;
+  height:65px;
+  border-radius:14px;
+  object-fit:cover;
+}
+
+.musicCard iframe{
+  width:100%;
+  height:75px;
+  border:none;
+  border-radius:12px;
+}
+
+/* 💌 ENVELOPE (UNCHANGED) */
+.envelope{
+  position:relative;
+  width:160px;
+  height:110px;
+  margin:0 auto 10px;
+}
+
+.envelope .body{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:70px;
+  background: rgba(255,255,255,0.35);
+  backdrop-filter: blur(20px);
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.4);
+}
+
+.envelope .flap{
+  position:absolute;
+  top:0;
+  width:0;
+  height:0;
+  border-left:80px solid transparent;
+  border-right:80px solid transparent;
+  border-bottom:60px solid rgba(255,255,255,0.45);
+  transform-origin:top;
+  transition:0.6s ease;
+}
+
+.envelope .seal{
+  position:absolute;
+  top:35px;
+  left:50%;
+  transform:translateX(-50%);
+  transition:0.4s ease;
+}
+
+.envelope.open .flap{
+  transform:rotateX(180deg);
+  opacity:0;
+}
+
+.envelope.open .seal{
+  transform:translateX(-50%) scale(0);
+  opacity:0;
+}
+
+.heart{
+  position:fixed;
+  animation:float 4s linear infinite;
+}
+@keyframes float{
+  0%{transform:translateY(0);opacity:1;}
+  100%{transform:translateY(-600px);opacity:0;}
+}
+
+.cursor::after{
+  content:"|";
+  animation:blink 1s infinite;
+}
+@keyframes blink{50%{opacity:0;}}
+
+</style></head><body><!-- 🎈 BALLONS --><div class="balloons">
+  <div class="balloon" style="left:10%;background:#ff6b81;"></div>
+  <div class="balloon" style="left:30%;background:#ffd166;animation-delay:2s;"></div>
+  <div class="balloon" style="left:60%;background:#06d6a0;animation-delay:4s;"></div>
+  <div class="balloon" style="left:80%;background:#118ab2;animation-delay:1s;"></div>
+</div><!-- LOCK --><div id="lockScreen">
+  <div class="lockBox">
+    <h2>💖 Our World</h2>
+    <input type="password" id="password">
+    <button onclick="unlock()">Unlock</button>
+  </div>
+</div><section><h1>us core</h1></section><!-- PHOTOS --><section>
+<h2>📸 fav clicks</h2>
+<div class="gallery">
+<img src="photo001.jpg"><img src="photo002.jpg"><img src="photo003.jpg">
+</div>
+</section><!-- MOVIES --><section>
+<h2>🎬 comfort Movies</h2>
+<div class="movies">
+<img src="movie001.jpg"><img src="movie002.jpg"><img src="movie003.jpg">
+</div>
+</section><!-- MUSIC --><section>
+<h2>🎵 songs we love</h2>
+<div class="musicGrid" id="musicGrid"></div>
+</section><!-- DAYS --><section>
+<h2>⏳Days together </h2>
+<div class="card" id="time"></div>
+</section><!-- LETTER (UNCHANGED EXACTLY) --><section>
+<h2>💌 A Letter</h2><div class="card" onclick="startLetter()">  <div class="envelope" id="envelope">
+    <div class="flap"></div>
+    <div class="body"></div>
+    <div class="seal">💖</div>
+  </div>  <div id="gift">🎁 Tap to Open Letter</div>
+  <div id="text"></div>
+  <span class="cursor"></span></div>
+</section><!-- DISTANCE --><section>
+<h2>📍 Distance Between Us</h2>
+<div class="card">
+<p>612 kms 💖 but hearts always close</p>
+</div>
+</section><script>
+
+function unlock(){
+  if(document.getElementById("password").value==="snikki07"){
+    document.getElementById("lockScreen").style.display="none";
+  }else alert("Wrong 💔");
+}
+
+const start=new Date("2025-10-27");
+setInterval(()=>{
+  let d=Math.floor((new Date()-start)/(1000*60*60*24));
+  document.getElementById("time").innerText=d+" days 💖";
+},1000);
+
+let i=0, started=false;
+
+const msg=`hie snikki 
+
+happiest birthday 
+
+I don’t really know how to express myself perfectly, but I want you to understand what I feel.
+
+We’ve been together all these days , i'm not going to say all stuff you know what we are 
+
+Take care always 🫂
+
+I love you ❤️`;
+
+function startLetter(){
+  if(started) return;
+  started=true;
+
+  document.getElementById("envelope").classList.add("open");
+  document.getElementById("gift").style.display="none";
+
+  const el=document.getElementById("text");
+
+  function type(){
+    if(i<msg.length){
+      el.innerHTML += msg[i]==="\n"?"<br>":msg[i];
+      i++;
+      setTimeout(type,40);
+    }
+  }
+
+  setTimeout(type,600);
+}
+
+const tracks=["3vCzLB6kS2lGcIpm1OOUsy","6lanRgr6wXibZr8KgzXxBl","3hB9lDLyAClYVZivMMl20N","7FwYs4qSJCJi2Hd6ZV8Q3M","4QNSMIeCknaH5m0EM2yNTI"];
+
+async function loadMusic(){
+  const grid=document.getElementById("musicGrid");
+
+  for(let id of tracks){
+    let res=await fetch(`https://open.spotify.com/oembed?url=https://open.spotify.com/track/${id}`);
+    let data=await res.json();
+
+    let div=document.createElement("div");
+    div.className="musicCard";
+
+    div.innerHTML=`
+      <img class="album" src="${data.thumbnail_url}">
+      <div class="musicInfo">
+        <strong>${data.title}</strong>
+        <iframe src="https://open.spotify.com/embed/track/${id}"></iframe>
+      </div>
+    `;
+
+    grid.appendChild(div);
+  }
+}
+loadMusic();
+
+</script></body>
+</html>
